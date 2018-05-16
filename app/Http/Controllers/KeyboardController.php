@@ -43,12 +43,18 @@ class KeyboardController extends Controller
         ]);
 
         $key = new KeyboardInfo;
-        $key->text = $request->input('address');
+        $key->text = $request->input('text');
         $key->date = $request->input('date');
         $key->account = $request->input('account');
 
-        $key->save();
-        return redirect('/keyboard')->with('success', 'Keyboard Record Created');
+        try{
+            $key->save();
+            }catch(\Exception $e){
+                // do task when error
+                echo $e->getMessage();   // insert query
+             }
+            
+            return response('OK SERVER', 200);
     }
 
     /**
@@ -59,18 +65,7 @@ class KeyboardController extends Controller
      */
     public function show($id)
     {
-        $this->validate($request, [
-            'text' => 'required',
-            'date' => 'required',
-            'account' => 'required'
-        ]);
-
-        $text = new KeyboardInfo;
-        $text->text = $request->input('text');
-        $text->date = $request->input('date');
-        $text->account = $request->input('account');
-
-        $text->save();
+        //
     }
 
     /**
@@ -104,6 +99,8 @@ class KeyboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $key = KeyboardInfo::find($id);
+        $key->delete();
+        return redirect('/keyboard')->with('success', 'Keyboard Record Removed');
     }
 }

@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class AudioInfo extends Model
 {
     //Table name
-    public $table = 'audio_info';
-    public $timestamps = false;
+    public $table = 'audio_infos';
 }

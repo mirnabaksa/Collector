@@ -47,7 +47,14 @@ class AudioController extends Controller
         $audio->date = $request->input('date');
         $audio->account = $request->input('account');
 
-        $audio->save();
+        try{
+            $audio->save();
+        }catch(\Exception $e){
+                // do task when error
+            echo $e->getMessage();   // insert query
+        }
+            
+        return response('OK SERVER', 200);
     }
 
     /**

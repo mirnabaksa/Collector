@@ -14,6 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
+
         $data =  LocationInfo::all();
         return view('data.locationindex')->with('data', $data);
     }
@@ -36,23 +37,31 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'latitude' => 'required',
             'longitude' => 'required',
-            'date' => 'required',
+            'datetime' => 'required',
             'address' => 'required',
             'account' => 'required'
         ]);
 
+
         $location = new LocationInfo;
         $location->latitude = $request->input('latitude');
         $location->longitude = $request->input('longitude');
-        $location->date = $request->input('date');
+        $location->datetime = $request->input('datetime');
         $location->address = $request->input('address');
         $location->account = $request->input('account');
 
+        try{
         $location->save();
-        return redirect('/location')->with('success', 'Location Created');
+        }catch(\Exception $e){
+            // do task when error
+            echo $e->getMessage();   // insert query
+         }
+        
+        return response('OK SERVER', 200);
     }
 
     /**

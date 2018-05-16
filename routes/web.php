@@ -17,4 +17,10 @@ Route::get('/location', 'LocationController@index');
 Route::get('/keyboard', 'KeyboardController@index');
 Route::get('/audio', 'AudioController@index');
 
-Route::resource('/location/store','LocationController@store');
+Route::post('/location/store','LocationController@store');
+Route::post('/keyboard/store','KeyboardController@store');
+Route::post('/audio/store','AudioController@store');
+
+Route::delete('/location/destroy/{id}','LocationController@destroy');
+Route::delete('/keyboard/destroy/{id}','KeyboardController@destroy');
+Route::delete('/audio/destroy/{id}','AudioController@destroy');

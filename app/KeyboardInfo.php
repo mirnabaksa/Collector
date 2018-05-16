@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class KeyboardInfo extends Model
 {
     //Table name
-    public $table = 'keyboard_info';
-    public $timestamps = false;
+    public $table = 'keyboard_infos';
 }
