@@ -39,3 +39,7 @@ Location info collected from Android phone sensors.
 @section('name')
 LocationController
 @endsection
+
+@section('search')
+@include('data.search',['url'=>'location','link'=>'location'])
+@endsection

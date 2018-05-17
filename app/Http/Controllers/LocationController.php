@@ -14,8 +14,13 @@ class LocationController extends Controller
      */
     public function index()
     {
+        $search = \Request::get('search'); //<-- we use global request to get the param of URI
+        
+        $data = LocationInfo::where('account','like','%'.$search.'%')
+            ->orderBy('id')
+            ->paginate(20);
 
-        $data =  LocationInfo::all();
+        //$data =  LocationInfo::all();
         return view('data.locationindex')->with('data', $data);
     }
 

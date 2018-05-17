@@ -14,7 +14,12 @@ class AudioController extends Controller
      */
     public function index()
     {
-        $data =  AudioInfo::all();
+        $search = \Request::get('search'); //<-- we use global request to get the param of URI
+        
+        $data = AudioInfo::where('account','like','%'.$search.'%')
+            ->orderBy('id')
+            ->paginate(20);
+
         return view('data.audioindex')->with('data', $data);
     }
 

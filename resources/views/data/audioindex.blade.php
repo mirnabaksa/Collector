@@ -25,7 +25,7 @@ Audio collected from phone microphone. Click on the icon to listen.
         <th>
         {!!Form::open(['action' => ['AudioController@destroy', $l->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
         {{Form::hidden('_method', 'DELETE')}}
-        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+        {{Form::submit('Delete', ['class' => 'btn btn-warning'])}}
         {!!Form::close()!!}
         </th>
 </tr> 
@@ -34,4 +34,8 @@ Audio collected from phone microphone. Click on the icon to listen.
 
 @section('name')
 AudioController
+@endsection
+
+@section('search')
+@include('data.search',['url'=>'location','link'=>'location'])
 @endsection

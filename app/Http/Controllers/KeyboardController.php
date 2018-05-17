@@ -14,7 +14,12 @@ class KeyboardController extends Controller
      */
     public function index()
     {
-        $data =  KeyboardInfo::all();
+        $search = \Request::get('search'); //<-- we use global request to get the param of URI
+        
+        $data = KeyboardInfo::where('account','like','%'.$search.'%')
+            ->orderBy('id')
+            ->paginate(20);
+
         return view('data.keyboardindex')->with('data', $data);
     }
 

@@ -25,7 +25,7 @@ Typing info collected from a custom made Android keyboard.
         <th>
         {!!Form::open(['action' => ['KeyboardController@destroy', $l->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
         {{Form::hidden('_method', 'DELETE')}}
-        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+        {{Form::submit('Delete', ['class' => 'btn btn-warning'])}}
         {!!Form::close()!!}
         </th>
 </tr> 
@@ -34,4 +34,8 @@ Typing info collected from a custom made Android keyboard.
 
 @section('name')
 KeyboardController
+@endsection
+
+@section('search')
+@include('data.search',['url'=>'location','link'=>'location'])
 @endsection

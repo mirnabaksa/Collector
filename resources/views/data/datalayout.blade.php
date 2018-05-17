@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    @if(count($data) > 0)
+    
     <section class="jumbotron text-center">
             <div class="container">
               <h1 class="jumbotron-heading">@yield('title')</h1>
               <p class="lead text-muted">@yield('description')</p>
+
+              @yield('search')
+              @if(count($data) == 0)
+                <p class = "lead text-muted">No results!</p>
+                @endif
+
+              
+
             </div>
     </section>
           
@@ -16,14 +24,11 @@
                             @yield('headers')
                         </tr>
                      </thead>
-                     
-                     @yield('info', $data)
+                     @if(count($data) > 0)
+                        @yield('info', $data)
+                    @endif
+                    
              </div>
-    @else
-    <section class="jumbotron text-center">
-            <div class="container">
-              <h1 class="jumbotron-heading">No info collected yet!</h1>
-            </div>
-    </section>
-    @endif
+   
+ 
 @endsection
