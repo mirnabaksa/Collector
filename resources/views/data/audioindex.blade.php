@@ -21,7 +21,7 @@ Audio collected from phone microphone. Click on the icon to listen.
         <th>{{$l->id}} </th>
         <th>{{$l->path}} </th>
         <th>{{$l->date}} </th>
-        <th>{{$l->account}} </th>
+        <th>{{$l->collectoruser->account}} </th>
         <th>
         {!!Form::open(['action' => ['AudioController@destroy', $l->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
         {{Form::hidden('_method', 'DELETE')}}
@@ -37,5 +37,5 @@ AudioController
 @endsection
 
 @section('search')
-@include('data.search',['url'=>'location','link'=>'location'])
+@include('data.search',['url'=>'audio','link'=>'audio'])
 @endsection

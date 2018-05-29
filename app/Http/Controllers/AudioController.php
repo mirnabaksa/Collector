@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AudioInfo;
+use App\CollectorUser;
 
 class AudioController extends Controller
 {
@@ -16,9 +17,12 @@ class AudioController extends Controller
     {
         $search = \Request::get('search'); //<-- we use global request to get the param of URI
         
-        $data = AudioInfo::where('account','like','%'.$search.'%')
-            ->orderBy('id')
-            ->paginate(20);
+        $user = CollectorUser::where('account', '=', $search)->first();
+        if($user === null){
+            $data =  AudioInfo::paginate(20);
+        }else{
+            $data = AudioInfo::where('user_id', '=', $user->id)->paginate(20);
+        }
 
         return view('data.audioindex')->with('data', $data);
     }
@@ -44,13 +48,29 @@ class AudioController extends Controller
         $this->validate($request, [
             'path' => 'required',
             'date' => 'required',
-            'account' => 'required'
+            'account' => 'required',
         ]);
+
+        $user = CollectorUser::where('account', '=', $request->input('account'))->first();
+        if($user === null){
+            $usernew = new CollectorUser;
+            $usernew->account = $request->input('account');
+            
+            try{ 
+                $usernew->save();  
+            }catch(\Exception $e){
+                #ignore
+            }
+
+            $user = $usernew;
+        }
 
         $audio = new AudioInfo;
         $audio->path = $request->input('path');
         $audio->date = $request->input('date');
-        $audio->account = $request->input('account');
+
+        $user->audioinfos()->save($audio);
+        $audio->collectoruser()->associate($user);
 
         try{
             $audio->save();

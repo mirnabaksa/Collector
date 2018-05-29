@@ -18,6 +18,10 @@
                 <a class="nav-link" href="/audio">Audio</a>
              </li>
 
+             <li class="nav-item active">
+                <a class="nav-link" href="/users">Users</a>
+             </li>
+
             </ul>
               
             </div>

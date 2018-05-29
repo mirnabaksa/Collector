@@ -16,6 +16,7 @@ Route::get('/about', 'PagesController@about');
 Route::get('/location', 'LocationController@index');
 Route::get('/keyboard', 'KeyboardController@index');
 Route::get('/audio', 'AudioController@index');
+Route::get('/users', 'UserController@index');
 
 Route::post('/location/store','LocationController@store');
 Route::post('/keyboard/store','KeyboardController@store');

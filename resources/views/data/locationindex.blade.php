@@ -24,7 +24,7 @@ Location info collected from Android phone sensors.
         <th>{{$l->latitude}} </th>
         <th>{{$l->longitude}} </th>
         <th>{{$l->datetime}} </th>
-        <th>{{$l->account}} </th>
+        <th>{{$l->collectoruser->account}} </th>
         <th>{{$l->address}} </th> 
         <th>
                 {{ Form::open(array('url' => '/location/destroy/' . $l->id, 'class' => 'pull-right')) }}

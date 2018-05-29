@@ -26,8 +26,10 @@
                      </thead>
                      @if(count($data) > 0)
                         @yield('info', $data)
+                        <?php echo $data->render(); ?>
                     @endif
                     
+            
              </div>
    
  

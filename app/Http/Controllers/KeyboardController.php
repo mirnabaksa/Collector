@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\KeyboardInfo;
+use App\CollectorUser;
 
 class KeyboardController extends Controller
 {
@@ -16,9 +17,12 @@ class KeyboardController extends Controller
     {
         $search = \Request::get('search'); //<-- we use global request to get the param of URI
         
-        $data = KeyboardInfo::where('account','like','%'.$search.'%')
-            ->orderBy('id')
-            ->paginate(20);
+        $user = CollectorUser::where('account', '=', $search)->first();
+        if($user === null){
+            $data =  KeyboardInfo::paginate(20);
+        }else{
+            $data = KeyboardInfo::where('user_id', '=', $user->id)->paginate(20);
+        }
 
         return view('data.keyboardindex')->with('data', $data);
     }
@@ -47,10 +51,26 @@ class KeyboardController extends Controller
             'account' => 'required'
         ]);
 
+        $user = CollectorUser::where('account', '=', $request->input('account'))->first();
+        if($user === null){
+            $usernew = new CollectorUser;
+            $usernew->account = $request->input('account');
+            
+            try{ 
+                $usernew->save();  
+            }catch(\Exception $e){
+                #ignore
+            }
+
+            $user = $usernew;
+        }
+
         $key = new KeyboardInfo;
         $key->text = $request->input('text');
         $key->date = $request->input('date');
-        $key->account = $request->input('account');
+
+        $user->keyboardinfos()->save($key);
+        $key->collectoruser()->associate($user);
 
         try{
             $key->save();

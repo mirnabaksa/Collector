@@ -12,5 +12,8 @@
     <body>
       @include('inc.navbar')
          @yield('content')
+         <div >
+         @yield('graphs')
+         </div>
     </body>
 </html>
