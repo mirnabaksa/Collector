@@ -7,6 +7,7 @@ use Khill\Lavacharts\Lavacharts;
 use App\LocationInfo;
 use App\KeyboardInfo;
 use App\AudioInfo;
+use App\CollectorUser;
 
 
 class PagesController extends Controller
@@ -26,6 +27,16 @@ class PagesController extends Controller
              \Lava::PieChart('DBRecords', $table, [
                 'is3D'   => true,
             ]);
+
+            $table  = \Lava::DataTable();
+            
+            $table->addStringColumn('Collectable')
+                  ->addNumberColumn('#')
+                  ->addRow(['Users', CollectorUser::all()->count()]);
+            
+                 \Lava::BarChart('Users', $table, [
+                    'is3D'   => true,
+                ]);
 
         return view('pages.index')->with('title', $title);
     }

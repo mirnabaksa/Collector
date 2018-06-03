@@ -9,7 +9,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data =  CollectorUser::paginate(15);
+        $search = \Request::get('search');
+        $data = CollectorUser::where('account', 'LIKE', $search)->paginate(15);
         return view('data.userindex')->with('data', $data);
     }
 }

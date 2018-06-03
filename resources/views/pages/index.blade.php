@@ -18,12 +18,12 @@
 <div class="container">
     <div class="row">
       <div class="col-md-4">
-          <h2> Number of records per collectable currently in database </h2>
-        <p><div id="chart-div"></div>  </p>
+          <h2> Number of records </h2>
+        <p><div id="chart-div1"></div>  </p>
       </div>
       <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec</p>
+        <h2>Number of users</h2>
+        <p><div id="chart-div2"></div>  </p>
       </div>
       <div class="col-md-4">
         <h2>Heading</h2>
@@ -35,5 +35,6 @@
 
   </div> <!-- /container -->
 
-<?= Lava::render('PieChart', 'DBRecords', 'chart-div') ?>
+<?= Lava::render('PieChart', 'DBRecords', 'chart-div1') ?>
+<?= Lava::render('BarChart', 'Users', 'chart-div2') ?>
 @endsection

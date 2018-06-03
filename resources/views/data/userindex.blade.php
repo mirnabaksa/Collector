@@ -27,5 +27,5 @@ UserController
 @endsection
 
 @section('search')
-@include('data.search',['url'=>'location','link'=>'location'])
+@include('data.search',['url'=>'users','link'=>'users'])
 @endsection
