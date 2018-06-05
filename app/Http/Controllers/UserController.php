@@ -13,4 +13,11 @@ class UserController extends Controller
         $data = CollectorUser::where('account', 'LIKE', $search)->paginate(15);
         return view('data.userindex')->with('data', $data);
     }
+
+    public function destroy($id)
+    {
+        $user = CollectorUser::find($id);
+        $user->delete();
+        return redirect('/users')->with('success', 'User Removed');
+    }
 }

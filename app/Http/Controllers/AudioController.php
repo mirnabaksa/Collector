@@ -24,6 +24,8 @@ class AudioController extends Controller
             $data = AudioInfo::where('user_id', '=', $user->id)->paginate(20);
         }
 
+        
+
         return view('data.audioindex')->with('data', $data);
     }
 
@@ -49,6 +51,7 @@ class AudioController extends Controller
             'path' => 'required',
             'date' => 'required',
             'account' => 'required',
+            'bytes' => 'required'
         ]);
 
         $user = CollectorUser::where('account', '=', $request->input('account'))->first();
@@ -68,6 +71,9 @@ class AudioController extends Controller
         $audio = new AudioInfo;
         $audio->path = $request->input('path');
         $audio->date = $request->input('date');
+
+
+        Storage::disk('s3')->put($audio->path, $request->input('bytes'));
 
         $user->audioinfos()->save($audio);
         $audio->collectoruser()->associate($user);

@@ -25,3 +25,4 @@ Route::post('/audio/store','AudioController@store');
 Route::delete('/location/destroy/{id}','LocationController@destroy');
 Route::delete('/keyboard/destroy/{id}','KeyboardController@destroy');
 Route::delete('/audio/destroy/{id}','AudioController@destroy');
+Route::delete('/users/destroy/{id}','UserController@destroy');

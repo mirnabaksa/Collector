@@ -17,17 +17,13 @@
 
 <div class="container">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col">
           <h2> Number of records </h2>
         <p><div id="chart-div1"></div>  </p>
       </div>
-      <div class="col-md-4">
+      <div class="col">
         <h2>Number of users</h2>
         <p><div id="chart-div2"></div>  </p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec</p>
       </div>
     </div>
 

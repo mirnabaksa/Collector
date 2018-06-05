@@ -18,6 +18,12 @@ Users of the application
 <tr>
         <th>{{$l->id}} </th>
         <th>{{$l->account}} </th>
+        <th>
+                {{ Form::open(array('url' => '/users/destroy/' . $l->id, 'class' => 'pull-right')) }}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
+            {{ Form::close() }}
+        </th>
 </tr> 
 @endforeach
 @endsection

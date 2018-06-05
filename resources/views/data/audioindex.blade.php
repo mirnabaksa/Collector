@@ -5,7 +5,7 @@ Collected audio info
 @endsection
 
 @section('description')
-Audio collected from phone microphone. Click on the icon to listen.
+Audio collected from phone microphone.
 @endsection
 
 @section('headers')
