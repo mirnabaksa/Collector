@@ -132,6 +132,6 @@ class AudioController extends Controller
     {
         $audio = AudioInfo::find($id);
         $audio->delete();
-        return redirect('/audio')->with('success', 'Audio Removed');
+        return redirect('collector/audio')->with('success', 'Audio Removed');
     }
 }

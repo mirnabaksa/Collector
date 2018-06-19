@@ -12,17 +12,16 @@
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('/about', 'PagesController@about');
-Route::get('/location', 'LocationController@index');
-Route::get('/keyboard', 'KeyboardController@index');
-Route::get('/audio', 'AudioController@index');
-Route::get('/users', 'UserController@index');
+Route::get('collector/location', 'LocationController@index');
+Route::get('collector/keyboard', 'KeyboardController@index');
+Route::get('collector/audio', 'AudioController@index');
+Route::get('collector/users', 'UserController@index');
 
-Route::post('/location/store','LocationController@store');
-Route::post('/keyboard/store','KeyboardController@store');
-Route::post('/audio/store','AudioController@store');
+Route::post('collector/location/store','LocationController@store');
+Route::post('collector/keyboard/store','KeyboardController@store');
+Route::post('collector/audio/store','AudioController@store');
 
-Route::delete('/location/destroy/{id}','LocationController@destroy');
-Route::delete('/keyboard/destroy/{id}','KeyboardController@destroy');
-Route::delete('/audio/destroy/{id}','AudioController@destroy');
-Route::delete('/users/destroy/{id}','UserController@destroy');
+Route::delete('collector/location/destroy/{id}','LocationController@destroy');
+Route::delete('collector/keyboard/destroy/{id}','KeyboardController@destroy');
+Route::delete('collector/audio/destroy/{id}','AudioController@destroy');
+Route::delete('collector/users/destroy/{id}','UserController@destroy');

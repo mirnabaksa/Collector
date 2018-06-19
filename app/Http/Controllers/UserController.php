@@ -18,6 +18,6 @@ class UserController extends Controller
     {
         $user = CollectorUser::find($id);
         $user->delete();
-        return redirect('/users')->with('success', 'User Removed');
+        return redirect('collector/users')->with('success', 'User Removed');
     }
 }

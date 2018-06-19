@@ -137,6 +137,6 @@ class LocationController extends Controller
     {
         $location = LocationInfo::find($id);
         $location->delete();
-        return redirect('/location')->with('success', 'Location Removed');
+        return redirect('collector/location')->with('success', 'Location Removed');
     }
 }

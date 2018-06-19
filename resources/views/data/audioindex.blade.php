@@ -37,5 +37,5 @@ AudioController
 @endsection
 
 @section('search')
-@include('data.search',['url'=>'audio','link'=>'audio'])
+@include('data.search',['url'=>'collector/audio','link'=>'collector/audio'])
 @endsection

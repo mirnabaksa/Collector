@@ -126,6 +126,6 @@ class KeyboardController extends Controller
     {
         $key = KeyboardInfo::find($id);
         $key->delete();
-        return redirect('/keyboard')->with('success', 'Keyboard Record Removed');
+        return redirect('collector/keyboard')->with('success', 'Keyboard Record Removed');
     }
 }
