@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/collector/collector', 'PagesController@index');
 Route::get('/collector', 'PagesController@index')->name('home');
 Route::get('collector/location', 'LocationController@index');
 Route::get('collector/keyboard', 'KeyboardController@index');
