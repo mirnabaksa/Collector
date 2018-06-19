@@ -9,17 +9,17 @@
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
              </li>
              <li class="nav-item active">
-                <a class="nav-link" href="collector/location">Location</a>
+                <a class="nav-link" href="location">Location</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="collector/keyboard">Keyboard</a>
+                <a class="nav-link" href="keyboard">Keyboard</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="collector/audio">Audio</a>
+                <a class="nav-link" href="audio">Audio</a>
              </li>
 
              <li class="nav-item active">
-                <a class="nav-link" href="collector/users">Users</a>
+                <a class="nav-link" href="users">Users</a>
              </li>
 
             </ul>

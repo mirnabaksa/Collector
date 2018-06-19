@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         $search = \Request::get('search');
         $data = CollectorUser::where('account', 'LIKE', $search)->paginate(15);
-        return view('data.userindex')->with('data', $data);
+        return view('/data.userindex')->with('data', $data);
     }
 
     public function destroy($id)
