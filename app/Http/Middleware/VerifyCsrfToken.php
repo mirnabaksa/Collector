@@ -12,8 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'http://collector-env-1.2ta8wpyecx.us-east-2.elasticbeanstalk.com/location/store',
-        'http://collector-env-1.2ta8wpyecx.us-east-2.elasticbeanstalk.com/keyboard/store',
-        'http://collector-env-1.2ta8wpyecx.us-east-2.elasticbeanstalk.com/audio/store'
+        'http://161.53.64.201:8080/collector/location/store',
+        'http://161.53.64.201:8080/collector/keyboard/store',
+        'http://161.53.64.201:8080/collector/audio/store'
     ];
 }
