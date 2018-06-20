@@ -38,5 +38,5 @@ KeyboardController
 @endsection
 
 @section('search')
-@include('data.search',['url'=>'keyboard','link'=>'keyboard'])
+@include('data.search',['url'=>'collector/keyboard','link'=>'collector/keyboard'])
 @endsection

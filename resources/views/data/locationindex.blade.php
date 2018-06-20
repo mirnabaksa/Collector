@@ -27,7 +27,7 @@ Location info collected from Android phone sensors.
         <th>{{$l->collectoruser->account}} </th>
         <th>{{$l->address}} </th> 
         <th>
-                {{ Form::open(array('url' => '/location/destroy/' . $l->id, 'class' => 'pull-right')) }}
+                {!!Form::open(['action' => ['LocationController@destroy', $l->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                 {{ Form::hidden('_method', 'DELETE') }}
                 {{ Form::submit('Delete', array('class' => 'btn btn-warning')) }}
             {{ Form::close() }}
@@ -41,5 +41,5 @@ LocationController
 @endsection
 
 @section('search')
-@include('data.search',['url'=>'location','link'=>'location'])
+@include('data.search',['url'=>'collector/location','link'=>'collector/location'])
 @endsection
