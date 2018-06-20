@@ -30,15 +30,6 @@ class AudioController extends Controller
         return view('data.audioindex')->with('data', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -91,39 +82,6 @@ class AudioController extends Controller
         return response('OK SERVER', 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -136,5 +94,9 @@ class AudioController extends Controller
         $audio = AudioInfo::find($id);
         $audio->delete();
         return redirect('collector/audio')->with('success', 'Audio Removed');
+    }
+
+    public function download($filename){
+        return response()->download(storage_path("app/public/{$filename}"));
     }
 }

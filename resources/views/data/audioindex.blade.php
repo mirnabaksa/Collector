@@ -28,6 +28,10 @@ Audio collected from phone microphone.
         {{Form::submit('Delete', ['class' => 'btn btn-warning'])}}
         {!!Form::close()!!}
         </th>
+
+        <th>
+                <a href="{{ route('download', ['filename' => $l->path]) }}">Download</a>
+        </th>
 </tr> 
 @endforeach
 @endsection

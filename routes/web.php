@@ -17,6 +17,7 @@ Route::get('/collector', 'PagesController@index')->name('home');
 Route::get('collector/location', 'LocationController@index');
 Route::get('collector/keyboard', 'KeyboardController@index');
 Route::get('collector/audio', 'AudioController@index');
+Route::get('collector/audio/download/{filename}', 'AudioController@download')->name('download');
 Route::get('collector/users', 'UserController@index');
 
 Route::post('collector/location/store','LocationController@store');
