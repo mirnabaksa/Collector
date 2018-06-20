@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AudioInfo;
 use App\CollectorUser;
+use Illuminate\Support\Facades\Storage;
 
 class AudioController extends Controller
 {
@@ -73,7 +74,9 @@ class AudioController extends Controller
         $audio->date = $request->input('date');
 
 
-        Storage::disk('s3')->put($audio->path, $request->input('bytes'));
+        Storage::disk('local')->put($audio->path, $request->input('bytes'));
+	//Storage::put('file.txt', 'Contents');		
+	//Storage::disk('local')->put('file.txt', 'Contents');
 
         $user->audioinfos()->save($audio);
         $audio->collectoruser()->associate($user);
