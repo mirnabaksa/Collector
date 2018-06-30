@@ -102,6 +102,6 @@ class AudioController extends Controller
               'Content-Type' => 'audio/3gpp',
            ];
 
-        return response()->download(storage_path("app/{$filename}"));
+        return response()->download(storage_path("app/{$filename}"), "audio", $headers);
     }
 }
