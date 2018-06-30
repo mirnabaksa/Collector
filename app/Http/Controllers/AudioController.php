@@ -43,7 +43,7 @@ class AudioController extends Controller
             'path' => 'required',
             'date' => 'required',
             'account' => 'required',
-            'bytes' => 'required'
+            'audiofilepath' => 'required'
         ]);
 
         $user = CollectorUser::where('account', '=', $request->input('account'))->first();
@@ -64,8 +64,10 @@ class AudioController extends Controller
         $audio->path = $request->input('path');
         $audio->date = $request->input('date');
 
+	Storage::put('file.txt', 'Contents');
 
-        Storage::disk('local')->put($audio->path, $request->input('bytes'));
+
+        Storage::disk('local')->put($audio->path, $request->input('audiofilepath'));
 	//Storage::put('file.txt', 'Contents');		
 	//Storage::disk('local')->put('file.txt', 'Contents');
 
@@ -102,6 +104,6 @@ class AudioController extends Controller
               'Content-Type' => 'audio/3gpp',
            ];
 
-        return response()->download(storage_path("app/{$filename}"), "audio", $headers);
+        return response()->download(storage_path("app/{$filename}"), $filename, $headers);
     }
 }
