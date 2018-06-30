@@ -64,7 +64,7 @@ class AudioController extends Controller
         $audio->path = $request->input('path');
         $audio->date = $request->input('date');
 
-	Storage::put('file.txt', 'Contents');
+//	Storage::put('file.txt', 'Contents');
 
 
         Storage::disk('local')->put($audio->path, $request->input('audiofilepath'));
@@ -101,7 +101,7 @@ class AudioController extends Controller
     public function download($filename){
 
 	$headers = [
-              'Content-Type' => 'audio/3gpp',
+              'Content-Type' => 'video/3gp',
            ];
 
         return response()->download(storage_path("app/{$filename}"), $filename, $headers);
