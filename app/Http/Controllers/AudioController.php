@@ -64,6 +64,9 @@ class AudioController extends Controller
         $audio->path = $request->input('path');
         $audio->date = $request->input('date');
 
+$path = Storage::putFileAs(
+    'avatars', $request->file('audiofilepath'), $audio->path
+);
 
 
         Storage::disk('local')->putFileAs('/',$request->file('audiofilepath'), $audio->path);
