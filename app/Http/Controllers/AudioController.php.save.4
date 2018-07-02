@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -64,8 +65,11 @@ class AudioController extends Controller
         $audio->path = $request->input('path');
         $audio->date = $request->input('date');
 
+
         Storage::disk('local')->putFileAs('/',$request->file('audiofilepath'), $audio->path);
-		
+	//Storage::disk('local')->put('file.txt', $request->input('audiofilepath'));		
+	//Storage::disk('local')->put('file.txt', 'Contents');
+
         $user->audioinfos()->save($audio);
         $audio->collectoruser()->associate($user);
 
@@ -89,7 +93,6 @@ class AudioController extends Controller
     public function destroy($id)
     {
         $audio = AudioInfo::find($id);
-	Storage::disk('local')->delete($audio->path);
         $audio->delete();
         return redirect('collector/audio')->with('success', 'Audio Removed');
     }
@@ -97,7 +100,7 @@ class AudioController extends Controller
     public function download($filename){
 
 	$headers = [
-              'Content-Type' => 'audio/3gpp',
+              'Content-Type' => 'video/3gp',
            ];
 
         return response()->download(storage_path("app/{$filename}"), $filename, $headers);
