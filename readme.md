@@ -1,9 +1,6 @@
 # Collector
 
-A web app developed as a part of my bachelor's thesis. Note: the development is still in progress! The app will be updated regularly.
-
-The app is available at:
-http://collector-env-1.2ta8wpyecx.us-east-2.elasticbeanstalk.com.
+A web app developed as a part of my bachelor's thesis.
 
 Collector shows the collected data from Android mobile phones:
 - location
